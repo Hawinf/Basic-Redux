@@ -1,17 +1,7 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import rootReducer from "./reducers";
+// import thunk from "redux-thunk"
 
-// cara mengirim data
-const counterState = {
-    total: 20,
-};
+const store = createStore(rootReducer);
 
-// reducer is function that will return state
-const counterReducer = (state = counterState) => {
-    return state
-}
-
-// store: method createStore content of reducer
-const store = createStore(counterReducer)
-
-
-export default store
+export default store;
