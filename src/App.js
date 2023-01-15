@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Result from './components/Result';
 import rootReducer from './redux/reducers';
+import { handleAdd, handleMin } from './redux/actions/counterAction';
 
 function App() {
   // const [num, setNum] = useState(0);
@@ -26,23 +27,13 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const handleAdd = () => {
-    let newTotal = counterReducer.total + 1;
+  const onAdd = () => {
+    dispatch(handleAdd(counterReducer))
+  }
 
-    dispatch({
-      type: 'TAMBAH',
-      payload: newTotal,
-    });
-  };
-
-  const handleMin = () => {
-    let newTotal = counterReducer.total - 1;
-
-    dispatch({
-      type: 'KURANG',
-      payload: newTotal,
-    });
-  };
+  const onMin = () => {
+    dispatch(handleMin(counterReducer))
+  }
 
   console.log(authReducer.isLogin, counterReducer.total)
 
@@ -54,8 +45,8 @@ function App() {
     //   <Result />
     // </div>
     <div className='App'>
-      <button onClick={handleAdd}>+</button>
-      <button onClick={handleMin}>-</button>
+      <button onClick={onAdd}>+</button>
+      <button onClick={onMin}>-</button>
       <h1>{counterReducer.total}</h1>
       <p>{authReducer.isLogin ? 'anda sudah login' : 'silahkan login'}</p>
     </div>
