@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Result from './components/Result';
 import rootReducer from './redux/reducers';
 import { handleAdd, handleMin } from './redux/actions/counterAction';
+import { handleAuth } from './redux/actions/authAction';
 
 function App() {
   // const [num, setNum] = useState(0);
@@ -35,6 +36,10 @@ function App() {
     dispatch(handleMin(counterReducer))
   }
 
+  const onAuth = () => {
+    dispatch(handleAuth(authReducer.isLogin))
+  }
+
   console.log(authReducer.isLogin, counterReducer.total)
 
   return (
@@ -49,6 +54,9 @@ function App() {
       <button onClick={onMin}>-</button>
       <h1>{counterReducer.total}</h1>
       <p>{authReducer.isLogin ? 'anda sudah login' : 'silahkan login'}</p>
+      <button onClick={onAuth}>
+        {authReducer.isLogin ? 'logout' : 'login'}
+      </button>
     </div>
   );
 }
